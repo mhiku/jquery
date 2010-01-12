@@ -295,7 +295,7 @@ jQuery.fx.prototype = {
 		(jQuery.fx.step[this.prop] || jQuery.fx.step._default)( this );
 
 		// Set display property to block for height/width animations
-		if ( ( this.prop === "height" || this.prop === "width" ) && this.elem.style ) {
+		if ( ( this.prop === "height" || this.prop === "width" ) && this.elem.style && jQuery.fx.tableTag.test(this.elem.tagName)) {
 			this.elem.style.display = "block";
 		}
 	},
@@ -462,7 +462,11 @@ jQuery.extend( jQuery.fx, {
 				fx.elem[ fx.prop ] = fx.now;
 			}
 		}
-	}
+	},
+
+	// Regex used to maintain the display property of animated table elements 
+	tableTag: new RegExp("/(TABLE|TR|TD|TH|THEAD|TBODY|TFOOT)/")
+
 });
 
 if ( jQuery.expr && jQuery.expr.filters ) {
