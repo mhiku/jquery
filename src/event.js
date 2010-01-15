@@ -990,3 +990,7 @@ if ( window.attachEvent && !window.addEventListener ) {
 		}
 	});
 }
+
+// Enable onload/ready events when navigating via history stack on Safari
+// - http://dev.jquery.com/ticket/5813
+jQuery(window).bind("unload", jQuery.noop);
