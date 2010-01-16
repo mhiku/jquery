@@ -17,7 +17,8 @@ jQuery.fn.extend({
 			return this.animate( genFx("show", 3), speed, callback);
 
 		} else {
-			for ( var i = 0, l = this.length; i < l; i++ ) {
+			var l = this.length, i = 0, j = 0;
+			for ( ; i < l; i++ ) {
 				var old = jQuery.data(this[i], "olddisplay");
 
 				this[i].style.display = old || "";
@@ -48,7 +49,7 @@ jQuery.fn.extend({
 
 			// Set the display of the elements in a second loop
 			// to avoid the constant reflow
-			for ( var j = 0, k = this.length; j < k; j++ ) {
+			for ( ; j < l; j++ ) {
 				this[j].style.display = jQuery.data(this[j], "olddisplay") || "";
 			}
 
@@ -61,7 +62,8 @@ jQuery.fn.extend({
 			return this.animate( genFx("hide", 3), speed, callback);
 
 		} else {
-			for ( var i = 0, l = this.length; i < l; i++ ) {
+			var l = this.length, i = 0, j = 0;
+			for ( ; i < l; i++ ) {
 				var old = jQuery.data(this[i], "olddisplay");
 				if ( !old && old !== "none" ) {
 					jQuery.data(this[i], "olddisplay", jQuery.css(this[i], "display"));
@@ -70,7 +72,7 @@ jQuery.fn.extend({
 
 			// Set the display of the elements in a second loop
 			// to avoid the constant reflow
-			for ( var j = 0, k = this.length; j < k; j++ ) {
+			for ( ; j < l; j++ ) {
 				this[j].style.display = "none";
 			}
 
