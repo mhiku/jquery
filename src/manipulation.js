@@ -149,7 +149,7 @@ jQuery.fn.extend({
 		}
 	},
 
-	clone: function( events ) {
+	clone: function( events, props ) {
 		// Do the clone
 		var ret = this.map(function() {
 			if ( !jQuery.support.noCloneEvent && !jQuery.isXMLDoc(this) ) {
@@ -179,6 +179,14 @@ jQuery.fn.extend({
 		if ( events === true ) {
 			cloneCopyEvent( this, ret );
 			cloneCopyEvent( this.find("*"), ret.find("*") );
+		} else if ( events !== undefined ) {
+			props = events;
+			events = undefined;
+		}
+
+		// Check for an attribute map
+		if ( props !== undefined && jQuery.isPlainObject( props ) ) {
+			jQuery.fn.attr.call( ret, props, true );
 		}
 
 		// Return the cloned set

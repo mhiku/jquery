@@ -757,7 +757,7 @@ test("replaceAll(String|Element|Array&lt;Element&gt;|jQuery)", function() {
 });
 
 test("clone()", function() {
-	expect(30);
+	expect(35);
 	equals( 'This is a normal link: Yahoo', jQuery('#en').text(), 'Assert text for #en' );
 	var clone = jQuery('#yahoo').clone();
 	equals( 'Try them out:Yahoo', jQuery('#first').append(clone).text(), 'Check for clone' );
@@ -807,6 +807,23 @@ test("clone()", function() {
 	div = div.clone(true);
 	equals( div.data("a"), true, "Data cloned." );
 	equals( div.data("b"), true, "Data cloned." );
+
+	div = jQuery("<div id='cloneme'/>").click(function(){
+		ok( false, "Bound event should not be cloned." );
+	});
+	equals( div.attr("id"), "cloneme", "Pre-clone ID exists." );
+	div = div.clone({ id: "isclone" });
+	equals( div.attr("id"), "isclone", "Clone's ID quick-set." );
+	div.click();
+
+	div = jQuery("<div id='cloneme2'/>").click(function(){
+		ok( true, "Bound event still exists." );
+	});
+	equals( div.attr("id"), "cloneme2", "Pre-clone ID exists." );
+
+	div = div.clone(true, {	id: "isclone2" });
+	equals( div.attr("id"), "isclone2", "Clone's ID quick-set." );
+	div.click();
 });
 
 if (!isLocal) {
