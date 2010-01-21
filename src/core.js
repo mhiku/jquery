@@ -560,7 +560,14 @@ jQuery.extend({
 	},
 
 	trim: function( text ) {
-		return (text || "").replace( rtrim, "" );
+		if ( typeof String.trim === "function" ) {
+			return ( text || "" ).trim();
+		}
+		var	str = ( text || "" ).replace( /^\s\s*/, '' ),
+			ws = /\s/,
+			i = str.length;
+		while ( ws.test( str.charAt( --i ) ) );
+		return str.slice( 0, i + 1 );
 	},
 
 	// results is for internal usage only
