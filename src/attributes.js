@@ -20,6 +20,17 @@ jQuery.fn.extend({
 			}
 		});
 	},
+	
+	// val is optional (will be applied when the attribute is 'activated')
+	toggleAttr: function ( name, val ) {
+		return this.each(function () {
+			var $t = $(this);
+
+			$t.attr(name) ?
+				$t.removeAttr(name) :
+				$t.attr(name, val || name);
+		});
+	},
 
 	addClass: function( value ) {
 		if ( jQuery.isFunction(value) ) {
