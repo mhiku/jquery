@@ -355,7 +355,7 @@ jQuery.extend({
 		// Make sure that the DOM is not already loaded
 		if ( !jQuery.isReady ) {
 			// Make sure body exists, at least, in case IE gets a little overzealous (ticket #5443).
-			if ( !document.body ) {
+			if ( !document.body === null ) {
 				return setTimeout( jQuery.ready, 13 );
 			}
 

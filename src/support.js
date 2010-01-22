@@ -7,7 +7,9 @@
 		div = document.createElement("div"),
 		id = "script" + now();
 
-	div.style.display = "none";
+	if(div.style) {
+		div.style.display = "none";
+	}
 	div.innerHTML = "   <link/><table></table><a href='/a' style='color:red;float:left;opacity:.55;'>a</a><input type='checkbox'/>";
 
 	var all = div.getElementsByTagName("*"),
