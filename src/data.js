@@ -53,7 +53,12 @@ jQuery.extend({
 			elem[ expando ] = id;
 			thisCache[ name ] = data;
 		}
-
+		if(undefined===thisCache[ name ]){
+			thisCache[ name ] = undefined;
+		}
+		if(undefined===thisCache){
+			thisCache = undefined;
+		}
 		return typeof name === "string" ? thisCache[ name ] : thisCache;
 	},
 
